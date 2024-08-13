@@ -1,7 +1,7 @@
 package com.develop.mypick.domain.foodRegistration.entity;
 
 import com.develop.mypick.common.entity.BaseTimeEntity;
-import com.develop.mypick.domain.user.entity.User;
+import com.develop.mypick.domain.user.entity.AuthUser;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -28,13 +28,13 @@ public class FoodRegistration extends BaseTimeEntity {
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    private AuthUser authUser;
 
     @Builder
-    public FoodRegistration(Long id, String name, String requestContent, User user) {
+    public FoodRegistration(Long id, String name, String requestContent, AuthUser authUser) {
         this.id = id;
         this.name = name;
         this.requestContent = requestContent;
-        this.user = user;
+        this.authUser = authUser;
     }
 }

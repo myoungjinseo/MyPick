@@ -1,7 +1,7 @@
 package com.develop.mypick.domain.meal.entity;
 
 import com.develop.mypick.common.entity.BaseTimeEntity;
-import com.develop.mypick.domain.user.entity.User;
+import com.develop.mypick.domain.user.entity.AuthUser;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AccessLevel;
@@ -25,13 +25,13 @@ public class Favorite extends BaseTimeEntity {
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    private AuthUser authUser;
 
     @Builder
-    public Favorite(Long id, String title,  User user) {
+    public Favorite(Long id, String title,  AuthUser authUser) {
         this.id = id;
         this.title = title;
-        this.user = user;
+        this.authUser = authUser;
     }
 
 
