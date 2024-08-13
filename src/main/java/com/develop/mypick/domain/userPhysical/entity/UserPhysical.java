@@ -3,7 +3,7 @@ package com.develop.mypick.domain.userPhysical.entity;
 
 import com.develop.mypick.common.entity.BaseTimeEntity;
 
-import com.develop.mypick.domain.user.entity.User;
+import com.develop.mypick.domain.user.entity.AuthUser;
 import com.develop.mypick.domain.userPhysical.enums.Gender;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
@@ -38,17 +38,17 @@ public class UserPhysical extends BaseTimeEntity {
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
-    private User user;
+    private AuthUser authUser;
 
     @Builder
-    public UserPhysical(Long id, Gender gender, float height, float weight, int age, int activityCoefficient, User user) {
+    public UserPhysical(Long id, Gender gender, float height, float weight, int age, int activityCoefficient, AuthUser authUser) {
         this.id = id;
         this.gender = gender;
         this.height = height;
         this.weight = weight;
         this.age = age;
         this.activityCoefficient = activityCoefficient;
-        this.user = user;
+        this.authUser = authUser;
     }
 
  }
