@@ -1,5 +1,6 @@
 package com.develop.mypick.domain.user.entity;
 
+import com.develop.mypick.common.entity.BaseTimeEntity;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
@@ -15,7 +16,7 @@ import java.util.stream.Collectors;
 @Builder
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class AuthUser implements UserDetails{
+public class AuthUser extends BaseTimeEntity implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

@@ -4,12 +4,16 @@ package com.develop.mypick.domain.userPhysical.entity;
 import com.develop.mypick.common.entity.BaseTimeEntity;
 
 import com.develop.mypick.domain.user.entity.AuthUser;
+import com.develop.mypick.domain.userPhysical.enums.ChronicDisease;
 import com.develop.mypick.domain.userPhysical.enums.Gender;
+import com.develop.mypick.domain.userPhysical.enums.Goal;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import java.util.Set;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -33,21 +37,29 @@ public class UserPhysical extends BaseTimeEntity {
     @Column(name = "age", nullable = false)
     private int age;
 
-    @Column(name = "activity_coefficient", nullable = false)
-    private int activityCoefficient;
+    @Enumerated(value = EnumType.STRING)
+    @Column(name = "goal", nullable = false)
+    private Goal goal;
+
+    @ElementCollection
+    @Enumerated(value = EnumType.STRING)
+    @Column(name = "chronic_diseases")
+    private Set<ChronicDisease> chronicDiseases;
+
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private AuthUser authUser;
 
     @Builder
-    public UserPhysical(Long id, Gender gender, float height, float weight, int age, int activityCoefficient, AuthUser authUser) {
+    public UserPhysical(Long id, Gender gender, float height, float weight, int age, Goal goal, Set<ChronicDisease> chronicDiseases, AuthUser authUser) {
         this.id = id;
         this.gender = gender;
         this.height = height;
         this.weight = weight;
         this.age = age;
-        this.activityCoefficient = activityCoefficient;
+        this.goal = goal;
+        this.chronicDiseases = chronicDiseases;
         this.authUser = authUser;
     }
 
