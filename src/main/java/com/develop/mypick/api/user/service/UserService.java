@@ -1,8 +1,10 @@
 package com.develop.mypick.api.user.service;
 
+import com.develop.mypick.api.user.dto.request.LoginRequest;
 import com.develop.mypick.api.user.dto.response.TokenResponse;
 import com.develop.mypick.api.user.dto.request.UserRequest;
 import com.develop.mypick.api.user.dto.response.AccountResponse;
+import com.develop.mypick.api.userPhysical.service.UserPhysicalService;
 import com.develop.mypick.common.exception.ErrorCode;
 import com.develop.mypick.common.exception.ErrorException;
 import com.develop.mypick.common.jwt.TokenProvider;
@@ -29,6 +31,8 @@ public class UserService {
     private final TokenProvider tokenProvider;
     private final PasswordEncoder passwordEncoder;
 
+    private final UserPhysicalService userPhysicalService;
+
     @Value("${spring.jwt.token-milliseconds.atk}")
     private Long atkTime;
     @Value("${spring.jwt.token-milliseconds.rtk}")
@@ -49,11 +53,13 @@ public class UserService {
 
 
         userRepository.save(authUser);
+
+        userPhysicalService.createUserPhysical(authUser,userRequest);
         return AccountResponse.of(authUser);
     }
 
     @Transactional
-    public TokenResponse signIn(UserRequest userRequest) {
+    public TokenResponse signIn(LoginRequest userRequest) {
         AuthUser authUser = userRepository.findByEmail(userRequest.email())
                 .orElseThrow(() -> new ErrorException(ErrorCode.LOGIN_FAIL));
 

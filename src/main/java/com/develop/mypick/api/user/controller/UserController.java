@@ -1,5 +1,6 @@
 package com.develop.mypick.api.user.controller;
 
+import com.develop.mypick.api.user.dto.request.LoginRequest;
 import com.develop.mypick.api.user.dto.request.UserRequest;
 import com.develop.mypick.api.user.dto.response.AccountResponse;
 import com.develop.mypick.api.user.dto.response.TokenResponse;
@@ -24,8 +25,8 @@ public class UserController {
     }
 
     @PostMapping("/signIn")
-    public TokenResponse signIn(@RequestBody UserRequest userRequest) {
-        TokenResponse response = userService.signIn(userRequest);
+    public TokenResponse signIn(@RequestBody LoginRequest loginRequest) {
+        TokenResponse response = userService.signIn(loginRequest);
         return response;
     }
 
