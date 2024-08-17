@@ -1,4 +1,4 @@
-package com.develop.mypick.domain.RecommendedNutrients.entity;
+package com.develop.mypick.domain.Recommended.entity;
 
 import com.develop.mypick.common.entity.BaseTimeEntity;
 import jakarta.persistence.Column;
@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-public class RecommendedNutrients extends BaseTimeEntity {
+public class Recommended extends BaseTimeEntity {
 
     @Id
     @Column(name = "id", nullable = false)
