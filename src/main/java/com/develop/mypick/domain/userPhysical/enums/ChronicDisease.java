@@ -9,7 +9,6 @@ public enum ChronicDisease {
     DIABETES("당뇨"),
     HEART_DISEASE("심장병"),
     OSTEOPOROSIS("골다공증"),
-    ARTHRITIS("관절염"),
     KIDNEY_DISEASE("신장 질환"),
     STROKE("뇌졸증");
 
