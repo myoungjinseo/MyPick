@@ -6,4 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserPhysicalRepository extends JpaRepository<UserPhysical, Long> {
     boolean existsByAuthUser(AuthUser user);
+
+    UserPhysical findByAuthUser(AuthUser user);
 }
