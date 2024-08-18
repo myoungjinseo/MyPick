@@ -26,3 +26,5 @@ spring:
     token-milliseconds:
       rtk: 600000
       atk: 3000000
+chatgpt:
+  api-key: ${CHATGPT_KEY}
