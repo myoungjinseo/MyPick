@@ -27,4 +27,6 @@ spring:
       rtk: 600000
       atk: 3000000
 chatgpt:
+  model : ${CHATGPT_MODEL}
   api-key: ${CHATGPT_KEY}
+  url: ${CHATGPT_URL}
