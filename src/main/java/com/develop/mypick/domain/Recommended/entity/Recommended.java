@@ -1,10 +1,10 @@
 package com.develop.mypick.domain.Recommended.entity;
 
 import com.develop.mypick.common.entity.BaseTimeEntity;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import com.develop.mypick.domain.user.entity.AuthUser;
+import jakarta.persistence.*;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -14,6 +14,7 @@ import lombok.NoArgsConstructor;
 public class Recommended extends BaseTimeEntity {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
 
@@ -53,4 +54,25 @@ public class Recommended extends BaseTimeEntity {
     @Column(name = "calcium", nullable = false)
     private double calcium;
 
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private AuthUser authUser;
+
+    @Builder
+    public Recommended(Long id, double cal, double protein, double fat, double carbs, double vitaminC, double vitaminB12, double vitaminE, double sodium, double potassium, double fiber, double sugar, double calcium,AuthUser user) {
+        this.id = id;
+        this.cal = cal;
+        this.protein = protein;
+        this.fat = fat;
+        this.carbs = carbs;
+        this.vitaminC = vitaminC;
+        this.vitaminB12 = vitaminB12;
+        this.vitaminE = vitaminE;
+        this.sodium = sodium;
+        this.potassium = potassium;
+        this.fiber = fiber;
+        this.sugar = sugar;
+        this.calcium = calcium;
+        this.authUser = user;
+    }
 }
