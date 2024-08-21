@@ -7,19 +7,23 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.web.client.RestTemplate;
 
+
 @Configuration
 public class ChatGptConfig {
 
-    @Value("${openai.secret-key}")
+    @Value("${chatgpt.api-key}")
     private String apiKey;
 
     @Bean
-    public RestTemplate template(){
-        RestTemplate restTemplate = new RestTemplate();
-        restTemplate.getInterceptors().add((request, body, execution) -> {
-            request.getHeaders().add("Authorization", "Bearer " + apiKey);
-            return execution.execute(request, body);
-        });
-        return restTemplate;
+    public RestTemplate restTemplate(){
+        return new RestTemplate();
     }
+    @Bean
+    public HttpHeaders httpHeaders() {
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Authorization", "Bearer " + apiKey);
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        return headers;
+    }
+
 }
