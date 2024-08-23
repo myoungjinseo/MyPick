@@ -4,6 +4,7 @@ package com.develop.mypick.domain.userPhysical.entity;
 import com.develop.mypick.common.entity.BaseTimeEntity;
 
 import com.develop.mypick.domain.user.entity.AuthUser;
+import com.develop.mypick.domain.userPhysical.enums.ActivityLevel;
 import com.develop.mypick.domain.userPhysical.enums.ChronicDisease;
 import com.develop.mypick.domain.userPhysical.enums.Gender;
 import com.develop.mypick.domain.userPhysical.enums.Goal;
@@ -41,6 +42,10 @@ public class UserPhysical extends BaseTimeEntity {
     @Column(name = "goal", nullable = false)
     private Goal goal;
 
+    @Enumerated(value = EnumType.STRING)
+    @Column(name = "activity_level", nullable = false)
+    private ActivityLevel activityLevel;
+
     @ElementCollection
     @Enumerated(value = EnumType.STRING)
     @Column(name = "chronic_diseases")
@@ -52,7 +57,7 @@ public class UserPhysical extends BaseTimeEntity {
     private AuthUser authUser;
 
     @Builder
-    public UserPhysical(Long id, Gender gender, float height, float weight, int age, Goal goal, Set<ChronicDisease> chronicDiseases, AuthUser authUser) {
+    public UserPhysical(Long id, Gender gender, float height, float weight, int age, Goal goal,ActivityLevel activityLevel, Set<ChronicDisease> chronicDiseases, AuthUser authUser) {
         this.id = id;
         this.gender = gender;
         this.height = height;
@@ -60,6 +65,7 @@ public class UserPhysical extends BaseTimeEntity {
         this.age = age;
         this.goal = goal;
         this.chronicDiseases = chronicDiseases;
+        this.activityLevel = activityLevel;
         this.authUser = authUser;
     }
 
