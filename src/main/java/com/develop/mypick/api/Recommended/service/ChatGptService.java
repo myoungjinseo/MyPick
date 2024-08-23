@@ -25,6 +25,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional(readOnly = true)
@@ -51,9 +52,16 @@ public class ChatGptService {
         String replaceJson = replaceJson(json);
         RecommendedResponse readValue = mapper.readValue(replaceJson, new TypeReference<RecommendedResponse>(){});
         Recommended recommended = RecommendedResponse.toEntity(user,readValue);
-        Recommended save = recommendedRepository.save(recommended);
-        return ChatGptResponse.of(user,save,readValue);
+        Boolean existsByAuthUser = recommendedRepository.existsByAuthUser(user);
+        if (!existsByAuthUser){
+            Recommended save = recommendedRepository.save(recommended);
+            return ChatGptResponse.of(user,save,readValue);
+        }
+        Recommended updateRecommended = updateReCommended(user, recommended);
+
+        return ChatGptResponse.of(user,updateRecommended,readValue);
     }
+
 
     public JsonNode getJsonNode(ChatGptRequest request) throws JsonProcessingException{
         ObjectMapper mapper = new ObjectMapper();
@@ -95,5 +103,14 @@ public class ChatGptService {
                 .replaceAll("\n"," ")
                 .replaceAll("n"," ")
                 .replaceAll("\\\\"," ");
+    }
+
+    @Transactional
+    public Recommended updateReCommended(AuthUser user,Recommended updateRecommended){
+        Recommended recommended = recommendedRepository.findByAuthUser(user)
+                .orElseThrow(()-> new ErrorException(ErrorCode.NOT_FOUND_RECOMMENDED));
+        recommended.updateRecommended(updateRecommended);
+
+        return recommended;
     }
 }

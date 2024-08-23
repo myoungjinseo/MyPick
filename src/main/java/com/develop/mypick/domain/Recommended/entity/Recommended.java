@@ -75,4 +75,19 @@ public class Recommended extends BaseTimeEntity {
         this.calcium = calcium;
         this.authUser = user;
     }
+
+    public void updateRecommended(Recommended recommended){
+        this.cal = recommended.getCal();
+        this.protein = recommended.getProtein();
+        this.fat = recommended.getFat();
+        this.carbs = recommended.getCarbs();
+        this.vitaminC = recommended.getVitaminC();
+        this.vitaminB12 = recommended.getVitaminB12();
+        this.vitaminE = recommended.getVitaminE();
+        this.sodium = recommended.getSodium();
+        this.potassium = recommended.getPotassium();
+        this.fiber = recommended.getFiber();
+        this.sugar = recommended.getSugar();
+        this.calcium = recommended.getCalcium();
+    }
 }
