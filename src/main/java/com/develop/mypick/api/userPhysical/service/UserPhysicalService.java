@@ -34,4 +34,11 @@ public class UserPhysicalService {
                 .build();
         userPhysicalRepository.save(userPhysical);
     }
+
+    public UserPhysical findUserPhysical(AuthUser user){
+
+        return userPhysicalRepository.findByAuthUser(user)
+                .orElseThrow(() -> new ErrorException(ErrorCode.NOT_FOUND_USER));
+
+    }
 }

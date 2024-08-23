@@ -5,8 +5,10 @@ import com.develop.mypick.api.user.dto.request.UserRequest;
 import com.develop.mypick.api.user.dto.response.AccountResponse;
 import com.develop.mypick.api.user.dto.response.TokenResponse;
 import com.develop.mypick.api.user.service.UserService;
+import com.develop.mypick.domain.user.entity.AuthUser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
@@ -31,8 +33,8 @@ public class UserController {
     }
 
     @GetMapping("/test")
-    public ResponseEntity<String> test(Principal principal){
-        String username = principal.getName().split(":")[0];
-        return ResponseEntity.ok().body(username);
+    public ResponseEntity<Long> test(@AuthenticationPrincipal AuthUser user){
+//        String username = principal.getName().split(":")[0];
+        return ResponseEntity.ok().body(user.getId());
     }
 }

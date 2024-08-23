@@ -21,7 +21,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @RequiredArgsConstructor
 public class SecurityConfig {
     private final TokenProvider tokenProvider;
-    private String[] allowUrls = {"/", "/api/user/signIn", "/api/user/signUp"};
+    private String[] allowUrls = {"/", "/api/user/signIn", "/api/user/signUp","/error"};
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -29,7 +29,6 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(allowUrls).permitAll()
-                        .requestMatchers("/api/user/signIn").permitAll()
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(config -> config.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
