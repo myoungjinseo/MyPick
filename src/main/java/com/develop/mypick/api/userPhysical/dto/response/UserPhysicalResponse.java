@@ -1,6 +1,7 @@
 package com.develop.mypick.api.userPhysical.dto.response;
 
 import com.develop.mypick.domain.userPhysical.entity.UserPhysical;
+import com.develop.mypick.domain.userPhysical.enums.ActivityLevel;
 import com.develop.mypick.domain.userPhysical.enums.ChronicDisease;
 import com.develop.mypick.domain.userPhysical.enums.Gender;
 import com.develop.mypick.domain.userPhysical.enums.Goal;
@@ -12,9 +13,10 @@ public record UserPhysicalResponse(Gender gender,
                                    float weight,
                                    int age,
                                    Goal goal,
-                                   Set<ChronicDisease> chronicDiseases) {
+                                   Set<ChronicDisease> chronicDiseases,
+                                   ActivityLevel activityLevel) {
 
-    public static UserPhysicalResponse of(UserPhysical userPhysical){
-        return new UserPhysicalResponse(userPhysical.getGender(), userPhysical.getHeight(), userPhysical.getWeight(), userPhysical.getAge(), userPhysical.getGoal(),userPhysical.getChronicDiseases());
+    public static UserPhysicalResponse from(UserPhysical userPhysical) {
+        return new UserPhysicalResponse(userPhysical.getGender(), userPhysical.getHeight(), userPhysical.getWeight(), userPhysical.getAge(), userPhysical.getGoal(), userPhysical.getChronicDiseases(),userPhysical.getActivityLevel());
     }
 }

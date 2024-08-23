@@ -1,7 +1,6 @@
 package com.develop.mypick.api.userPhysical.service;
 
 import com.develop.mypick.api.user.dto.request.UserRequest;
-import com.develop.mypick.api.userPhysical.dto.response.UserPhysicalResponse;
 import com.develop.mypick.common.exception.ErrorCode;
 import com.develop.mypick.common.exception.ErrorException;
 import com.develop.mypick.domain.user.entity.AuthUser;
@@ -36,14 +35,10 @@ public class UserPhysicalService {
         userPhysicalRepository.save(userPhysical);
     }
 
-    public UserPhysicalResponse findUserPhysical(AuthUser user){
-        boolean isExist = userPhysicalRepository.existsByAuthUser(user);
-        if (isExist){
-            throw new ErrorException(ErrorCode.EXITS_USER_PHYSICAL);
-        }
+    public UserPhysical findUserPhysical(AuthUser user){
 
-        UserPhysical userPhysical = userPhysicalRepository.findByAuthUser(user);
+        return userPhysicalRepository.findByAuthUser(user)
+                .orElseThrow(() -> new ErrorException(ErrorCode.NOT_FOUND_USER));
 
-        return UserPhysicalResponse.of(userPhysical);
     }
 }
