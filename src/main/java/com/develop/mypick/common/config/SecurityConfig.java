@@ -21,7 +21,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @RequiredArgsConstructor
 public class SecurityConfig {
     private final TokenProvider tokenProvider;
-    private String[] allowUrls = {"/", "/api/user/signIn", "/api/user/signUp","/error"};
+    private String[] allowUrls = {"/", "/api/user/signIn", "/api/user/signUp","/error","/v3/api-docs/**","/swagger-ui/**"};
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
