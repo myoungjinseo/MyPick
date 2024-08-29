@@ -24,8 +24,8 @@ spring:
   jwt:
     secret: ${JWT_SECRET_KEY}
     token-milliseconds:
-      rtk: 600000
-      atk: 3000000
+      rtk: 14 * 60 * 60 * 24 * 1000 # 14일
+      atk: 60 * 60 * 3 * 1000 # 3시간
 chatgpt:
   model : ${CHATGPT_MODEL}
   api-key: ${CHATGPT_KEY}
