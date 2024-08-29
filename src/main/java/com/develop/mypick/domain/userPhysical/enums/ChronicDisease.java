@@ -1,8 +1,6 @@
 package com.develop.mypick.domain.userPhysical.enums;
 
-import lombok.Getter;
 
-@Getter
 public enum ChronicDisease {
     HYPERTENSION("고혈압"),
     HIGH_CHOLESTEROL("고지혈증"),
@@ -13,6 +11,10 @@ public enum ChronicDisease {
     STROKE("뇌졸증");
 
     private final String value;
+
+    public String getValue() {
+        return value;
+    }
 
     ChronicDisease(String value) {
         this.value = value;
