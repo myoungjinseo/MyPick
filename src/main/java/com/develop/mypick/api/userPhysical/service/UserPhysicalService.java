@@ -31,6 +31,7 @@ public class UserPhysicalService {
                 .height(request.height())
                 .weight(request.weight())
                 .goal(request.goal())
+                .activityLevel(request.activityLevel())
                 .build();
         userPhysicalRepository.save(userPhysical);
     }

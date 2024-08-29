@@ -67,8 +67,8 @@ public class UserService {
             throw new ErrorException(ErrorCode.LOGIN_FAIL);
         }
 
-        String atk = tokenProvider.createToken(authUser.getUsername(), atkTime);
-        String rtk = tokenProvider.createToken(authUser.getUsername(), rtkTime);
+        String atk = tokenProvider.createToken(authUser.getEmail(), atkTime);
+        String rtk = tokenProvider.createToken(authUser.getEmail(), rtkTime);
 
         RefreshToken refreshToken = new RefreshToken(rtk, authUser.getEmail(), LocalDateTime.now().plusSeconds(rtkTime / 1000));
         refreshTokenRepository.save(refreshToken);

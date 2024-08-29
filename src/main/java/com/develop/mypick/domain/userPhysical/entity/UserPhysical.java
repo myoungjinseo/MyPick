@@ -15,6 +15,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -53,7 +54,7 @@ public class UserPhysical extends BaseTimeEntity {
 
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", nullable = false)
     private AuthUser authUser;
 
     @Builder
@@ -69,4 +70,9 @@ public class UserPhysical extends BaseTimeEntity {
         this.authUser = authUser;
     }
 
+    public Set<String> getChronicDiseases() {
+        return chronicDiseases.stream()
+                .map(ChronicDisease::getValue)
+                .collect(Collectors.toSet());
+    }
  }
