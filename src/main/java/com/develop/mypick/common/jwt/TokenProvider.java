@@ -36,9 +36,9 @@ public class TokenProvider implements InitializingBean {
         secretKey = Keys.hmacShaKeyFor(keyBytes);
     }
 
-    public String createToken(String username,Long time) {
-        Claims claims = Jwts.claims().setSubject(username);
-        claims.put("username",username);
+    public String createToken(String email,Long time) {
+        Claims claims = Jwts.claims().setSubject(email);
+        claims.put("email",email);
 
         Date issuedAt = new Date();
         Date expiredAt = new Date(issuedAt.getTime() + time);
@@ -52,7 +52,7 @@ public class TokenProvider implements InitializingBean {
     }
 
 
-    public String getUserUsername(String token){
+    public String getUserEmail(String token){
         return Jwts.parserBuilder()
                 .setSigningKey(secretKey)
                 .build()
@@ -62,7 +62,7 @@ public class TokenProvider implements InitializingBean {
     }
 
     public Authentication getAuthentication(String authToken) {
-        UserDetails userDetails = userDetailService.loadUserByUsername(getUserUsername(authToken));
+        UserDetails userDetails = userDetailService.loadUserByUsername(getUserEmail(authToken));
         return new UsernamePasswordAuthenticationToken(userDetails, null,
                 userDetails.getAuthorities());
     }

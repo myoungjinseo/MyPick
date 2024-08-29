@@ -19,7 +19,7 @@ public class JWTFilter extends OncePerRequestFilter {
     @Override
     public void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
         String accessToken = resolveToken(request);
-        // 유효한 토큰인지 확인
+
 
         // 토큰이 유효하면 토큰으로부터 유저 정보를 받아온다
         Authentication authentication = tokenProvider.getAuthentication(accessToken);
