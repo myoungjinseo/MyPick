@@ -11,6 +11,7 @@ import jakarta.validation.constraints.Pattern;
 
 import java.util.Set;
 
+@Schema(name = "UserRequest",description = "회원가입 요청 dto")
 public record UserRequest(
         @NotNull(message = "이메일: 필수 정보입니다.")
         @Email(message = "이메일 형식이 올바르지 않습니다.")
