@@ -8,5 +8,7 @@ public record TokenResponse(
         String accessToken,
         @Schema(description = "RefreshToken", example = "RefreshToken")
         String refreshToken) {
-
+        public static TokenResponse of(String atk, String rtk){
+                return new TokenResponse(atk,rtk);
+        }
 }

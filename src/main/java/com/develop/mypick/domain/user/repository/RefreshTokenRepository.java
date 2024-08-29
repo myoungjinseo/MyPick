@@ -14,11 +14,17 @@ public class RefreshTokenRepository{
 
     private final RedisTemplate redisTemplate;
 
+
     public void save(RefreshToken refreshToken){
         ValueOperations<String, String> valueOperations = redisTemplate.opsForValue();
         valueOperations.set(refreshToken.getRefreshToken(), refreshToken.getEmail(),30,TimeUnit.DAYS);
         redisTemplate.expire(refreshToken.getRefreshToken(),30,TimeUnit.DAYS);
     }
+
+    public boolean deleteRefreshTokenByKey(String key){
+        return Boolean.TRUE.equals(redisTemplate.hasKey(key));
+    }
+
 
 
 }

@@ -1,6 +1,7 @@
 package com.develop.mypick.api.user.controller;
 
 import com.develop.mypick.api.user.dto.request.LoginRequest;
+import com.develop.mypick.api.user.dto.request.RefreshTokenRequest;
 import com.develop.mypick.api.user.dto.request.UserRequest;
 import com.develop.mypick.api.user.dto.response.AccountResponse;
 import com.develop.mypick.api.user.dto.response.TokenResponse;
@@ -37,9 +38,9 @@ public class UserController {
         return ResponseEntity.ok(userService.signIn(loginRequest));
     }
 
-    @GetMapping("/test")
-    public ResponseEntity<Long> test(@AuthenticationPrincipal AuthUser user) {
-//        String username = principal.getName().split(":")[0];
-        return ResponseEntity.ok().body(user.getId());
+    @Operation(summary = "리프레시 토큰", description = "리프레시 토큰을 이용해 토큰을 받습니다.")
+    @GetMapping("/reissue")
+    public ResponseEntity<TokenResponse> reissueToken(@RequestBody RefreshTokenRequest request) {
+        return ResponseEntity.ok().body(userService.reissueToken(request));
     }
 }
