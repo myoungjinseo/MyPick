@@ -30,7 +30,6 @@ public class JWTFilter extends OncePerRequestFilter {
             Authentication authentication = tokenProvider.getAuthentication(accessToken);
             // SecurityContext에 authentication 객체를 저장
             SecurityContextHolder.getContext().setAuthentication(authentication);
-            chain.doFilter(request, response);
         }
 
         chain.doFilter(request, response);
