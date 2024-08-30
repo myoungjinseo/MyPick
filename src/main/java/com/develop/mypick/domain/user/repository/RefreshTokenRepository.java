@@ -6,6 +6,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Repository;
 
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 @Repository
@@ -21,10 +22,13 @@ public class RefreshTokenRepository{
         redisTemplate.expire(refreshToken.getRefreshToken(),30,TimeUnit.DAYS);
     }
 
-    public boolean deleteRefreshTokenByKey(String key){
-        return Boolean.TRUE.equals(redisTemplate.hasKey(key));
+
+    public void deleteByKey(String refreshToken){
+       redisTemplate.delete(refreshToken);
     }
 
-
+    public boolean existsRefreshToken(String refreshToken){
+        return redisTemplate.hasKey(refreshToken);
+    }
 
 }

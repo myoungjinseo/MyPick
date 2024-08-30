@@ -112,8 +112,12 @@ public class UserService {
     public TokenResponse recreateTokenDtoAtValidate(String refreshToken) {
         Jws<Claims> claims = tokenProvider.getRefreshTokenClaims(refreshToken);
         String email = claims.getBody().getSubject();
+        boolean existsRefreshToken = refreshTokenRepository.existsRefreshToken(refreshToken);
+        if (!existsRefreshToken){
+            throw new JwtException(ErrorCode.RT_NOT_FOUND.getMessage());
+        }
         //기존 refresh Token을 삭제합니다.
-        refreshTokenRepository.deleteRefreshTokenByKey(email);
+        refreshTokenRepository.deleteByKey(refreshToken);
 
         return generateToken(email);
     }
