@@ -1,6 +1,7 @@
 package com.develop.mypick.common.config;
 
 import com.develop.mypick.common.jwt.JWTFilter;
+import com.develop.mypick.common.jwt.JwtExceptionFilter;
 import com.develop.mypick.common.jwt.TokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -21,7 +22,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @RequiredArgsConstructor
 public class SecurityConfig {
     private final TokenProvider tokenProvider;
-    private String[] allowUrls = {"/", "/api/user/signIn", "/api/user/signUp","/error","/v3/api-docs/**","/swagger-ui/**"};
+    private String[] allowUrls = {"/", "/api/user/signIn", "/api/user/signUp","/error","/v3/api-docs/**",
+            "/swagger-ui/**", "/api/user/reissue"};
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -38,7 +40,8 @@ public class SecurityConfig {
                                 response.setStatus(HttpStatus.UNAUTHORIZED.value())));
 
         http
-                .addFilterBefore(new JWTFilter(tokenProvider), UsernamePasswordAuthenticationFilter.class);
+                .addFilterBefore(new JWTFilter(tokenProvider), UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(new JwtExceptionFilter(), JWTFilter.class);
 
         return http.build();
     }
