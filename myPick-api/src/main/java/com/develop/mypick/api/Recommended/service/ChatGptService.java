@@ -81,9 +81,9 @@ public class ChatGptService {
         UserPhysical userPhysical = userPhysicalService.findUserPhysical(user);
         String prompt = String.format("형식\\n\\\"기초대사량 : double 칼로리 : double \\n 단백질 : double \\n 탄수화물 : double \\n 지방 : double " +
                 "\\n 나트륨 : double \\n칼륨 : double \\n 섬유질 : double \\n 당류 : double \\n 칼슘 : double\\n비타민C : double" +
-                "\\n비타민B12 : double\\n비타민E : double\\\"\\n예시[- 목적 : %s\\n- 키 : %f cm\\n- 몸무게 : %f kg\\n- 나이 : %d세" +
+                "\\n비타민B12 : double\\n비타민E : double\\\"\\n예시 = [- 목적 : %s\\n- 키 : %f cm\\n- 몸무게 : %f kg\\n- 나이 : %d세" +
                 "\\n- 활동지수 : %f\\n- 지병 : %s\\n- 성별 : %s]\n고려 사항[1.형식의 형태를 유지해주세요." +
-                "\\n2.위에 있는 예시를 꼭 참고해주세요.\\n3.단위는 작성을 하지마세요.\\n4.소수점 한자리 수까지 작성해주세요.\\n5.열정적으로 답변해주세요.\\n6.json문장 구조로 표현해주세요.]"
+                "\\n2.예시안에 있는 내용을 모두 꼭 참고해주세요.\\n3.단위는 작성을 하지마세요.\\n4.소수점 한자리 수까지 작성해주세요.\\n5.열정적으로 답변해주세요.\\n6.json문장 구조로 표현해주세요.]"
                 ,userPhysical.getGoal().getGoal(),userPhysical.getHeight(),userPhysical.getWeight(),userPhysical.getAge(), userPhysical.getActivityLevel().getValue(),
                 (!userPhysical.getChronicDiseases().isEmpty() ?userPhysical.getChronicDiseases() : "없음") ,userPhysical.getGender().getGender());
         log.info(prompt);

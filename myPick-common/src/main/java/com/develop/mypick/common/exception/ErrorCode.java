@@ -26,7 +26,12 @@ public enum ErrorCode {
     CHATGPT_ERROR(HttpStatus.BAD_REQUEST,"ChatGPT 자체 오류입니다"),
     EXITS_EMAIL(HttpStatus.BAD_REQUEST,"이미 존재하는 이메일입니다."),
     EXITS_USER_PHYSICAL(HttpStatus.BAD_REQUEST,"유저 피지컬이 이미 존재합니다"),
-    LOGIN_FAIL(HttpStatus.BAD_REQUEST,"아이디 혹은 비밀번호를 확인하세요.");
+    LOGIN_FAIL(HttpStatus.BAD_REQUEST,"아이디 혹은 비밀번호를 확인하세요."),
+
+    NON_EXISTENT_LIST_DTO(HttpStatus.NOT_FOUND,"리스트가 존재하지 않습니다"),
+
+    //nutritionFact
+    JSON_PARSING_ERROR(HttpStatus.BAD_REQUEST,"JSON 파싱오류입니다.");
 
     private final HttpStatus httpStatus;
     private final String message;
