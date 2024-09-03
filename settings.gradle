@@ -2,4 +2,5 @@ rootProject.name = 'myPick'
 include 'myPick-domain'
 include 'myPick-api'
 include 'myPick-common'
+include 'myPick-batch'
 
