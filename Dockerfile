@@ -2,7 +2,7 @@
 FROM openjdk:17-jdk
 
 # 인자 정리 - jar
-ARG JAR_FILE=/build/libs/myPick-plain.jar
+ARG JAR_FILE=/build/libs/*.jar
 
 # jar File Copy
 COPY ${JAR_FILE} /app.jar
