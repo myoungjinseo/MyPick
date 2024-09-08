@@ -6,7 +6,7 @@ plugins {
 
 
 subprojects { // 모든 하위 모듈들에 이 설정을 적용합니다.
-    group 'com.example'
+    group 'com.develop'
     version '0.0.1-SNAPSHOT'
     java {
         sourceCompatibility = '17'
@@ -41,4 +41,6 @@ subprojects { // 모든 하위 모듈들에 이 설정을 적용합니다.
     }
 
 }
-
+bootJar {
+    enabled = false
+}
