@@ -1,8 +1,8 @@
 package com.develop.mypick.common.config;
 
-import com.develop.mypick.common.jwt.JwtExceptionFilter;
-import com.develop.mypick.common.jwt.TokenProvider;
-import com.develop.mypick.common.jwt.JWTFilter;
+import com.develop.mypick.api.jwt.JwtExceptionFilter;
+import com.develop.mypick.api.jwt.TokenProvider;
+import com.develop.mypick.api.jwt.JWTFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

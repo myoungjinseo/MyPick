@@ -1,4 +1,4 @@
-package com.develop.mypick.common.jwt;
+package com.develop.mypick.api.jwt;
 
 import com.develop.mypick.common.exception.ErrorCode;
 import io.jsonwebtoken.JwtException;

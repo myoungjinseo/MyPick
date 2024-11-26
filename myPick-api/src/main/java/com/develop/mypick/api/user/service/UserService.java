@@ -8,7 +8,7 @@ import com.develop.mypick.api.user.dto.response.AccountResponse;
 import com.develop.mypick.api.userPhysical.service.UserPhysicalService;
 import com.develop.mypick.common.exception.ErrorCode;
 import com.develop.mypick.common.exception.ErrorException;
-import com.develop.mypick.common.jwt.TokenProvider;
+import com.develop.mypick.api.jwt.TokenProvider;
 import com.develop.mypick.domain.user.entity.AuthUser;
 import com.develop.mypick.domain.user.entity.RefreshToken;
 import com.develop.mypick.domain.user.entity.Role;
