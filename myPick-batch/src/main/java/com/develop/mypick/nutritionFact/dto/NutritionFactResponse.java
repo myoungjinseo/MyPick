@@ -51,8 +51,7 @@ public record NutritionFactResponse(
         @JsonDeserialize(using = CommaToDoubleDeserializer.class)
         double calcium,
 
-        @JsonProperty("Z10500")
-        @JsonDeserialize(using = CommaToDoubleDeserializer.class)
+        @JsonProperty(value = "Z10500",access = JsonProperty.Access.READ_WRITE)
         String amount
 
 ) {
@@ -87,6 +86,8 @@ public record NutritionFactResponse(
         }
 
         public static double amountToDouble(String amount){
-                return Double.parseDouble(amount.replace("g",""));
+                if (amount.isEmpty())
+                        return 0;
+                return Double.parseDouble(amount.replaceAll("[^0-9.]", ""));
         }
 }

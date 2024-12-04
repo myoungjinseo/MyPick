@@ -6,6 +6,12 @@ spring:
     hikari:
       connection-timeout: 2000
       maximum-pool-size: 5
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      connect-timeout: 2s
+      timeout: 1s
   jpa:
     hibernate:
       ddl-auto: update
@@ -16,14 +22,18 @@ spring:
         use_sql_comments: true
     defer-datasource-initialization: true
   batch:
+    jdbc:
+      initialize-schema: ALWAYS
     job:
       enabled: true
-    jdbc:
-      initialize-schema: always
+
 server:
   port: 9090
 
 nutrition:
   service-key: ${SERVICE_KEY}
-
+chatgpt:
+  model : ${CHATGPT_MODEL}
+  api-key: ${CHATGPT_KEY}
+  url: ${CHATGPT_URL}
 

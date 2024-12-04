@@ -1,4 +1,4 @@
-package com.develop.mypick.common.config;
+package com.develop.mypick.api.config;
 
 import com.develop.mypick.api.jwt.JwtExceptionFilter;
 import com.develop.mypick.api.jwt.TokenProvider;

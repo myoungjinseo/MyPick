@@ -17,7 +17,7 @@ public class NutritionFactReader implements ItemReader<List<NutritionFactRespons
 
     private final NutritionFactService nutritionFactService;
 
-    private int page = 0;
+    private int page = 1;
     @Override
     @StepScope
     public List<NutritionFactResponse> read() {
