@@ -1,5 +1,6 @@
 package com.develop.mypick.api.NutritionFact.service;
 
+import com.develop.mypick.common.dto.slice.SliceResponse;
 import com.develop.mypick.domain.nutritionFact.repo.NutritionFactRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
@@ -14,7 +15,8 @@ public class NutritionFactService {
 
     private final NutritionFactRepository nutritionFactRepository;
 
-    public Slice<String> findByFoodName(String foodName, Pageable pageable) {
-        return nutritionFactRepository.findByFoodName(foodName,pageable);
+    public SliceResponse findByFoodName(String foodName, Pageable pageable) {
+        Slice<String> foodNameSlice = nutritionFactRepository.findByFoodName(foodName, pageable);
+        return SliceResponse.from(foodNameSlice);
     }
 }

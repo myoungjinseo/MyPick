@@ -20,14 +20,14 @@ public class NutritionFactRepositoryCustomImpl implements NutritionFactRepositor
     @Override
     public Slice<String> findByFoodName(String foodName, Pageable pageable) {
         int pageSize = pageable.getPageSize();
+        boolean hasNext = false;
         List<String> nutritionFacts = jpaQueryFactory
                 .select(nutritionFact.foodName)
                 .from(nutritionFact)
                 .where(nutritionFact.foodName.contains(foodName))
                 .offset(pageable.getOffset())
-                .limit(pageSize - 1)
+                .limit(pageSize + 1)
                 .fetch();
-        boolean hasNext = false;
         if (nutritionFacts.size() > pageSize) {
             nutritionFacts.remove(pageSize);
             hasNext = true;
@@ -35,5 +35,6 @@ public class NutritionFactRepositoryCustomImpl implements NutritionFactRepositor
 
         return new SliceImpl<>(nutritionFacts, pageable, hasNext);
     }
+
 
 }
