@@ -21,7 +21,7 @@ public class NutritionFactScheduler {
     private final JobLauncher jobLauncher;
 
 
-    @Scheduled(cron = "0 15 1 L * ?")
+    @Scheduled(cron = "0 10 5 * * ?")
     public void run() throws JobInstanceAlreadyCompleteException, JobExecutionAlreadyRunningException, JobParametersInvalidException, JobRestartException {
         jobLauncher.run(
                 nutritionFactJobConfig.createNutritionFactJob(),

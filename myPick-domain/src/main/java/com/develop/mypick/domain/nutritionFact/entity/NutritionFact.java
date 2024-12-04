@@ -53,8 +53,12 @@ public class NutritionFact {
     private double calcium;
 
 
+    @Column(name = "amount")
+    private double amount;
+
+
     @Builder
-    public NutritionFact(Long id, String foodName, double cal, double protein, double fat, double carbs, double vitaminC, double vitaminB12, double vitaminE, double sodium, double potassium, double fiber, double sugar, double calcium) {
+    public NutritionFact(Long id, String foodName, double cal, double protein, double fat, double carbs, double vitaminC, double vitaminB12, double vitaminE, double sodium, double potassium, double fiber, double sugar, double calcium, double amount) {
         this.id = id;
         this.foodName = foodName;
         this.cal = cal;
@@ -69,5 +73,6 @@ public class NutritionFact {
         this.fiber = fiber;
         this.sugar = sugar;
         this.calcium = calcium;
+        this.amount = amount;
     }
 }

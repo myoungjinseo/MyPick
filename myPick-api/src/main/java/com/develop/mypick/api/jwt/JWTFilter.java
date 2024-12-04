@@ -1,4 +1,4 @@
-package com.develop.mypick.common.jwt;
+package com.develop.mypick.api.jwt;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

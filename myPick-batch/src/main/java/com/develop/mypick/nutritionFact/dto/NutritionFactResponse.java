@@ -49,7 +49,10 @@ public record NutritionFactResponse(
         double sugar,
         @JsonProperty("AMT_NUM10")
         @JsonDeserialize(using = CommaToDoubleDeserializer.class)
-        double calcium
+        double calcium,
+
+        @JsonProperty(value = "Z10500",access = JsonProperty.Access.READ_WRITE)
+        String amount
 
 ) {
         public static NutritionFact toEntity(NutritionFactResponse response){
@@ -68,6 +71,7 @@ public record NutritionFactResponse(
                         .vitaminB12(response.vitaminB12())
                         .vitaminC(response.vitaminC())
                         .vitaminE(response.vitaminE())
+                        .amount(amountToDouble(response.amount()))
                         .build();
         }
         /*
@@ -79,5 +83,11 @@ public record NutritionFactResponse(
                         .filter(dto -> dto.foodName() != null)
                         .map(NutritionFactResponse::toEntity)
                         .collect(Collectors.toList());
+        }
+
+        public static double amountToDouble(String amount){
+                if (amount.isEmpty())
+                        return 0;
+                return Double.parseDouble(amount.replaceAll("[^0-9.]", ""));
         }
 }
