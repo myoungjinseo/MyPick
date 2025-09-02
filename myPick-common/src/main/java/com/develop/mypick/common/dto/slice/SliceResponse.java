@@ -6,12 +6,16 @@ import java.util.List;
 
 public record SliceResponse<T>(
         List<T> data,
-        SliceData meta
+        boolean hasNext, // 다음 페이지 존재 여부
+        int page,       // 현재 페이지
+        int size       // 요청 사이즈
 ) {
-    public static SliceResponse from(Slice slice){
-        return new SliceResponse(
+    public static <T> SliceResponse<T> from(Slice<T> slice) {
+        return new SliceResponse<T>(
                 slice.getContent(),
-                new SliceData(slice.getNumber(),slice.getSize(),slice.isFirst(),slice.isLast())
+                slice.hasNext(),
+                slice.getNumber(),
+                slice.getSize()
         );
     }
 }
