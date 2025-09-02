@@ -26,9 +26,4 @@ public class RecommendedController {
         return ResponseEntity.ok(response);
     }
 
-    @Operation(summary = "식단 추천", description = "ChatGPT를 이용해서 식단 추천을 합니다.")
-    @GetMapping("/test")
-    public ResponseEntity<Long> getRecommend1(@AuthenticationPrincipal AuthUser user)  {
-        return ResponseEntity.ok(user.getId());
-    }
 }
